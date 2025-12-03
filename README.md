@@ -89,6 +89,7 @@ wuziqi/
 - [贡献指南](CONTRIBUTING.md)
 - [行为准则](CODE_OF_CONDUCT.md)
 - [更新日志](CHANGELOG.md)
+- [许可证](LICENSE)
 
 ## 更新日志
 
