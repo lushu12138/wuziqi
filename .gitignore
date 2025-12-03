@@ -12,6 +12,7 @@ desktop.ini
 *.swo
 *~
 *.sublime-*
+.project
 
 # 日志文件
 *.log
