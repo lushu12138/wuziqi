@@ -462,7 +462,7 @@
                 // 添加新棋子
                 if (value !== 0) {
                     const stone = document.createElement('div');
-                    stone.className = `stone ${value === 1 ? 'black' : 'white'}`;
+                    stone.className = `stone ${value === PLAYER_BLACK ? 'black' : 'white'}`;
                     cell.appendChild(stone);
                 }
             });
