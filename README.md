@@ -86,6 +86,7 @@ wuziqi/
 
 - [问题反馈](https://github.com/yourusername/wuziqi/issues)
 - [功能建议](https://github.com/yourusername/wuziqi/issues/new)
+- [贡献指南](CONTRIBUTING.md)
 
 ## 更新日志
 
