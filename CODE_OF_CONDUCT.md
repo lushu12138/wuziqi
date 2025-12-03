@@ -43,3 +43,7 @@
 本行为准则改编自 [Contributor Covenant](https://www.contributor-covenant.org)，版本 1.4，
 可在 https://www.contributor-covenant.org/version/1/4/code-of-conduct.html 获取
 
+## 联系方式
+
+如有任何问题，请通过GitHub Issues联系我们。
+
