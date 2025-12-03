@@ -22,4 +22,5 @@ yarn-debug.log*
 *.temp
 *.cache
 *.old
+*.backup
 
