@@ -82,6 +82,10 @@ wuziqi/
 
 如果这个项目对你有帮助，请给个Star！
 
+## 相关链接
+
+- [问题反馈](https://github.com/yourusername/wuziqi/issues)
+
 ## 更新日志
 
 ### v1.1.0 (2024-12-03)
