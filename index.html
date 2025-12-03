@@ -410,7 +410,7 @@
         function handleCellClick(row, col) {
             // 检查游戏是否结束或该位置已有棋子
             if (gameOver || board[row][col] !== 0) {
-                return; // 无效操作，直接返回
+                return; // 无效操作，直接返回，不执行后续逻辑
             }
 
             // 放置棋子
