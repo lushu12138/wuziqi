@@ -156,12 +156,26 @@
     </div>
 
     <script>
-        const BOARD_SIZE = 15;
+        /**
+         * 五子棋游戏主逻辑
+         * @author wuziqi
+         * @version 1.0.0
+         */
+        
+        // 游戏常量
+        const BOARD_SIZE = 15; // 棋盘大小 15x15
+        const PLAYER_BLACK = 1; // 黑棋玩家
+        const PLAYER_WHITE = 2; // 白棋玩家
+        
+        // 游戏状态
         let board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(0));
-        let currentPlayer = 1; // 1 = 黑棋, 2 = 白棋
-        let gameOver = false;
+        let currentPlayer = PLAYER_BLACK; // 当前玩家，默认黑棋先行
+        let gameOver = false; // 游戏是否结束
 
-        // 初始化棋盘
+        /**
+         * 初始化棋盘
+         * 创建15x15的棋盘网格并绑定点击事件
+         */
         function initBoard() {
             const boardElement = document.getElementById('board');
             boardElement.innerHTML = '';
@@ -178,25 +192,32 @@
             }
         }
 
-        // 处理点击
+        /**
+         * 处理棋盘单元格点击事件
+         * @param {number} row - 行索引
+         * @param {number} col - 列索引
+         */
         function handleCellClick(row, col) {
+            // 检查游戏是否结束或该位置已有棋子
             if (gameOver || board[row][col] !== 0) {
                 return;
             }
 
+            // 放置棋子
             board[row][col] = currentPlayer;
             renderBoard();
             
+            // 检查是否获胜
             if (checkWin(row, col)) {
                 gameOver = true;
-                const winner = currentPlayer === 1 ? '黑棋' : '白棋';
+                const winner = currentPlayer === PLAYER_BLACK ? '黑棋' : '白棋';
                 document.getElementById('message').textContent = `${winner}获胜！`;
                 document.getElementById('message').className = 'message win';
                 return;
             }
 
             // 切换玩家
-            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            currentPlayer = currentPlayer === PLAYER_BLACK ? PLAYER_WHITE : PLAYER_BLACK;
             updateCurrentPlayer();
         }
 
@@ -223,22 +244,32 @@
             });
         }
 
-        // 检查是否获胜
+        /**
+         * 检查当前玩家是否获胜
+         * 检查四个方向（水平、垂直、两条对角线）是否有五子连珠
+         * @param {number} row - 最后落子的行索引
+         * @param {number} col - 最后落子的列索引
+         * @returns {boolean} 是否获胜
+         */
         function checkWin(row, col) {
+            // 定义四个检查方向：水平、垂直、主对角线、副对角线
             const directions = [
-                [[0, 1], [0, -1]],   // 水平
-                [[1, 0], [-1, 0]],   // 垂直
-                [[1, 1], [-1, -1]],  // 主对角线
-                [[1, -1], [-1, 1]]   // 副对角线
+                [[0, 1], [0, -1]],   // 水平方向
+                [[1, 0], [-1, 0]],   // 垂直方向
+                [[1, 1], [-1, -1]],  // 主对角线（左上到右下）
+                [[1, -1], [-1, 1]]   // 副对角线（右上到左下）
             ];
 
+            // 遍历每个方向
             for (let dir of directions) {
-                let count = 1;
+                let count = 1; // 从当前落子位置开始计数
                 
+                // 检查该方向的两个相反方向
                 for (let d of dir) {
                     let r = row + d[0];
                     let c = col + d[1];
                     
+                    // 沿着该方向继续检查相同颜色的棋子
                     while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && 
                            board[r][c] === currentPlayer) {
                         count++;
@@ -247,6 +278,7 @@
                     }
                 }
                 
+                // 如果连续棋子数达到5个，则获胜
                 if (count >= 5) {
                     return true;
                 }
@@ -255,10 +287,12 @@
             return false;
         }
 
-        // 更新当前玩家显示
+        /**
+         * 更新当前玩家显示
+         */
         function updateCurrentPlayer() {
             const playerElement = document.getElementById('currentPlayer');
-            if (currentPlayer === 1) {
+            if (currentPlayer === PLAYER_BLACK) {
                 playerElement.textContent = '黑棋';
                 playerElement.className = 'current-player black';
             } else {
@@ -267,11 +301,16 @@
             }
         }
 
-        // 重置游戏
+        /**
+         * 重置游戏到初始状态
+         */
         function resetGame() {
+            // 清空棋盘
             board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(0));
-            currentPlayer = 1;
+            // 重置为黑棋先行
+            currentPlayer = PLAYER_BLACK;
             gameOver = false;
+            // 重新初始化棋盘和界面
             initBoard();
             updateCurrentPlayer();
             document.getElementById('message').textContent = '黑棋先行';
