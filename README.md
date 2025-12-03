@@ -47,7 +47,11 @@ wuziqi/
 ├── README.md          # 项目说明文档
 ├── LICENSE            # 开源许可证
 ├── CONTRIBUTING.md    # 贡献指南
-└── CODE_OF_CONDUCT.md # 行为准则
+├── CODE_OF_CONDUCT.md # 行为准则
+├── CHANGELOG.md       # 更新日志
+└── .github/           # GitHub模板文件
+    ├── pull_request_template.md
+    └── ISSUE_TEMPLATE/
 ```
 
 ## 贡献
