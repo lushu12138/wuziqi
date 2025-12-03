@@ -88,6 +88,7 @@ wuziqi/
 - [功能建议](https://github.com/yourusername/wuziqi/issues/new)
 - [贡献指南](CONTRIBUTING.md)
 - [行为准则](CODE_OF_CONDUCT.md)
+- [更新日志](CHANGELOG.md)
 
 ## 更新日志
 
