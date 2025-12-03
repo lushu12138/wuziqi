@@ -57,6 +57,20 @@
             padding: 15px;
             background: #f5f5f5;
             border-radius: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .stats strong {
+            color: #333;
+            font-size: 1.1em;
         }
 
         .current-player {
@@ -186,6 +200,10 @@
                 <span>当前玩家: </span>
                 <span class="current-player black" id="currentPlayer">黑棋</span>
             </div>
+            <div class="stats">
+                <span>黑棋: <strong id="blackWins">0</strong> 胜</span>
+                <span>白棋: <strong id="whiteWins">0</strong> 胜</span>
+            </div>
             <button onclick="resetGame()">重新开始</button>
         </div>
         <div class="board" id="board"></div>
@@ -208,6 +226,12 @@
         let board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(0));
         let currentPlayer = PLAYER_BLACK; // 当前玩家，默认黑棋先行
         let gameOver = false; // 游戏是否结束
+        
+        // 游戏统计
+        let stats = {
+            blackWins: 0,
+            whiteWins: 0
+        };
 
         /**
          * 初始化棋盘
@@ -250,6 +274,15 @@
                 const winner = currentPlayer === PLAYER_BLACK ? '黑棋' : '白棋';
                 document.getElementById('message').textContent = `${winner}获胜！`;
                 document.getElementById('message').className = 'message win';
+                
+                // 更新统计
+                if (currentPlayer === PLAYER_BLACK) {
+                    stats.blackWins++;
+                    document.getElementById('blackWins').textContent = stats.blackWins;
+                } else {
+                    stats.whiteWins++;
+                    document.getElementById('whiteWins').textContent = stats.whiteWins;
+                }
                 return;
             }
 
